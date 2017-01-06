@@ -1,29 +1,37 @@
-#include "Source\Parser\Lexer.h"
-#include "boost\algorithm\string.hpp"
+﻿#include <iostream>
+
+#include <clocale>
+#include <regex>
 using namespace std;
 
 
-vector<Lexer::Tokens> Lexer::Parse(istream is)
-{
-	std::istreambuf_iterator<char> eos;
-	std::string str(std::istreambuf_iterator<char>(is), eos);
-	Parse(str);
-}
-
-vector<Lexer::Tokens> Lexer::Parse(std::ifstream fs)
-{
-	std::string str((std::istreambuf_iterator<char>(fs)),
-		std::istreambuf_iterator<char>());
-	Parse(str);
-}
-
-vector<Lexer::Tokens> Lexer::Parse(string &str)
-{
-	vector<string> tokedString;
-}
 
 
-Lexer::Tokens Lexer::GetToken(string& tokstr)
+
+
+
+int main()
 {
+	
+		
+
+	wchar_t i = 1;
+
+	
+	std::setlocale(LC_ALL, "");
+	while (i > 0)
+	{
+		wcin >> i;
+
+		wsmatch wideMatch;
+		wstring target = wstring({i});
+		 if (regex_match(target.cbegin(), target.cend(), wideMatch, letter))
+		{
+			cout << "Match" << endl;
+		}
+		 else
+			cout << "Not Match" << endl;
+
+	}
 
 }
