@@ -20,12 +20,15 @@ public:
 		
 	static enum Tokens
 	{
-		T_EOF,
+		T_EOF = 256,
 		T_KEYWORD,
 		T_OPERATOR,
 		T_IDENTIFIER,
-		T_NUMBER,
-		T_STRINGLITERAL
+		T_INTEGER_CONST,
+		T_FLOAT_CONST,
+		T_DOUBLE_CONST,
+		T_STRINGLITERAL,
+		T_TOKEN
 	};
 	~Lexer()	
 	{
@@ -41,11 +44,16 @@ public:
 			 void main() \n\
 			{ \n \
 				string a =  \"HI! \\\" 아\"; \n\
+				int b = 10; \n\
+				float fv = 10.1f;\n\
+				double ff = 110.100;\n\
+				char c = 'a' \n\
+				char eq = '\\\"' \n\
 			}   \n\
 		} ";
 	int Curser= 0;
 
-	std::wregex letter = std::wregex(L"[^0-9|!|@|#|$|%|^|&|*|(|)|.|,|/|\||?|>|<|-|=|;|\"|\'|\\[\\]|`| |\{|\}|\t]");
+	std::wregex letter = std::wregex(L"[^0-9|!|@|#|$|%|^|&|*|(|)|.|,|/|\||?|>|<|-|=|;|\"|\'|\\[\\]|`| |\{|\}|\t|\n]");
 	std::wregex digit = std::wregex(L"[0-9]");
 
 	const std::vector<std::wstring> token_string_set = { L"import", L"class", L"case", L"component", L"continue", L"if", L"interface", L"else"

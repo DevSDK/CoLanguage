@@ -32,6 +32,7 @@ TokenSet Lexer::NextToken()
 				{
 						isString = false;
 						TokenSet tok;
+						tok.LineNo = LineNo;
 						tok.Token = T_STRINGLITERAL;
 						tok.Value = strstm.str();
 						return tok;
@@ -45,21 +46,69 @@ TokenSet Lexer::NextToken()
 			if (isComment)
 				continue;
 			strstm << c;
-			while ((c = nextChar()) != L'\0' && (isLetter(c) || isDigit(c)))
+			while ((c = LookAhead(0)) != L'\0'  && (isLetter(c) || isDigit(c)))
 			{
 				strstm << c;
-			}
+				nextChar();
+			} 
 			if (find(token_string_set.begin(), token_string_set.end(), strstm.str()) != token_string_set.end())
 			{
 				TokenSet tok;
+				tok.LineNo = LineNo;
 				tok.Token = T_KEYWORD;
 				tok.Value = strstm.str();
 				return tok;
 			}
 			TokenSet tok;
+			tok.LineNo = LineNo;
 			tok.Token = T_IDENTIFIER;
 			tok.Value = strstm.str();
 			return tok;
+		}
+		else if (isDigit(c))
+		{
+			TokenSet tok;
+			tok.LineNo = LineNo;
+			bool isInteger = true;
+			strstm << c;
+			while ((c = LookAhead(0)) != L'\0'&&isDigit(c))
+			{
+				strstm << c;
+				nextChar();
+				
+			}
+			if (c == L'.')
+			{
+				isInteger = false;
+				strstm << nextChar();
+				while ((c = LookAhead(0)) != L'\0'&&isDigit(c))
+				{
+					strstm << c;
+					nextChar();
+
+				}
+			}
+			
+			if (c == L'f' || c == L'F')
+			{
+				strstm << nextChar();
+				tok.Token = T_FLOAT_CONST;
+				tok.Value = strstm.str();
+				return tok;
+			}
+			else if (isInteger == false)
+			{
+				tok.Token = T_DOUBLE_CONST;
+				tok.Value = strstm.str();
+				return tok;
+			}
+			else
+			{
+				tok.Token = T_INTEGER_CONST;
+				tok.Value = strstm.str();
+				return tok;
+			}
+
 		}
 		else
 		{
@@ -85,6 +134,7 @@ TokenSet Lexer::NextToken()
 				{
 					nextChar();
 					tok.Token = T_OPERATOR;
+					tok.LineNo = LineNo;
 					tok.Value = L"*=";
 					return tok;
 				}
@@ -92,6 +142,7 @@ TokenSet Lexer::NextToken()
 				{
 					nextChar();
 					tok.Token = T_OPERATOR;
+					tok.LineNo = LineNo;
 					tok.Value = L"*";
 					return tok;
 				}
@@ -114,6 +165,7 @@ TokenSet Lexer::NextToken()
 					nextChar();
 					tok.Token = T_OPERATOR;
 					tok.Value = L"/=";
+					tok.LineNo = LineNo;
 					return tok;
 				}
 				else
@@ -121,6 +173,7 @@ TokenSet Lexer::NextToken()
 					nextChar();
 					tok.Token = T_OPERATOR;
 					tok.Value = L"/";
+					tok.LineNo = LineNo;
 					return tok;
 				}
 			}
@@ -135,6 +188,7 @@ TokenSet Lexer::NextToken()
 					nextChar();
 					tok.Token = T_OPERATOR;
 					tok.Value = L"==";
+					tok.LineNo = LineNo;
 					return tok;
 				}
 				else
@@ -142,6 +196,7 @@ TokenSet Lexer::NextToken()
 					nextChar();
 					tok.Token = T_OPERATOR;
 					tok.Value = L"=";
+					tok.LineNo = LineNo;
 					return tok;
 				}
 			}
@@ -156,6 +211,7 @@ TokenSet Lexer::NextToken()
 					nextChar();
 					tok.Token = T_OPERATOR;
 					tok.Value = L"+=";
+					tok.LineNo = LineNo;
 					return tok;
 				}
 				else if (c == L'+')
@@ -163,12 +219,14 @@ TokenSet Lexer::NextToken()
 					nextChar();
 					tok.Token = T_OPERATOR;
 					tok.Value = L"++";
+					tok.LineNo = LineNo;
 					return tok;
 				}
 				else
 				{
 					tok.Token = T_OPERATOR;
 					tok.Value = L"+";
+					tok.LineNo = LineNo;
 					return tok;
 				}
 			}
@@ -180,6 +238,7 @@ TokenSet Lexer::NextToken()
 					nextChar();
 					tok.Token = T_OPERATOR;
 					tok.Value = L"-=";
+					tok.LineNo = LineNo;
 					return tok;
 				}
 				else if (c == L'-')
@@ -187,12 +246,14 @@ TokenSet Lexer::NextToken()
 					nextChar();
 					tok.Token = T_OPERATOR;
 					tok.Value = L"--";
+					tok.LineNo = LineNo;
 					return tok;
 				}
 				else
 				{
 					tok.Token = T_OPERATOR;
 					tok.Value = L"-";
+					tok.LineNo = LineNo;
 					return tok;
 				}
 
@@ -208,6 +269,7 @@ TokenSet Lexer::NextToken()
 					nextChar();
 					tok.Token = T_OPERATOR;
 					tok.Value = L"<=";
+					tok.LineNo = LineNo;
 					return tok;
 				}
 				else if (c == L'<')
@@ -215,12 +277,14 @@ TokenSet Lexer::NextToken()
 					nextChar();
 					tok.Token = T_OPERATOR;
 					tok.Value = L"<<";
+					tok.LineNo = LineNo;
 					return tok;
 				}
 				else
 				{
 					tok.Token = T_OPERATOR;
 					tok.Value = L"<";
+					tok.LineNo = LineNo;
 					return tok;
 				}
 			}
@@ -237,6 +301,7 @@ TokenSet Lexer::NextToken()
 					nextChar();
 					tok.Token = T_OPERATOR;
 					tok.Value = L">=";
+					tok.LineNo = LineNo;
 					return tok;
 				}
 				else if (c == L'>')
@@ -244,12 +309,14 @@ TokenSet Lexer::NextToken()
 					nextChar();
 					tok.Token = T_OPERATOR;
 					tok.Value = L">>";
+					tok.LineNo = LineNo;
 					return tok;
 				}
 				else
 				{
 					tok.Token = T_OPERATOR;
 					tok.Value = L">";
+					tok.LineNo = LineNo;
 					return tok;
 				}
 
@@ -266,6 +333,7 @@ TokenSet Lexer::NextToken()
 					nextChar();
 					tok.Token = T_OPERATOR;
 					tok.Value = L"!=";
+					tok.LineNo = LineNo;
 					return tok;
 
 				}
@@ -273,6 +341,7 @@ TokenSet Lexer::NextToken()
 				{
 					tok.Token = T_OPERATOR;
 					tok.Value = L"!";
+					tok.LineNo = LineNo;
 					return tok;
 				}
 			}
@@ -287,12 +356,14 @@ TokenSet Lexer::NextToken()
 					nextChar();
 					tok.Token = T_OPERATOR;
 					tok.Value = L"%=";
+					tok.LineNo = LineNo;
 					return tok;
 				}
 				else
 				{
 					tok.Token = T_OPERATOR;
 					tok.Value = L"%";
+					tok.LineNo = LineNo;
 					return tok;
 				}
 			}
@@ -300,6 +371,7 @@ TokenSet Lexer::NextToken()
 			{
 				tok.Token = T_OPERATOR;
 				tok.Value = L".";
+				tok.LineNo = LineNo;
 				return tok;
 			}
 
@@ -307,6 +379,7 @@ TokenSet Lexer::NextToken()
 			{
 				tok.Token = T_OPERATOR;
 				tok.Value = L",";
+				tok.LineNo = LineNo;
 				return tok;
 			}
 
@@ -314,6 +387,7 @@ TokenSet Lexer::NextToken()
 			{
 				tok.Token = T_OPERATOR;
 				tok.Value = L"(";
+				tok.LineNo = LineNo;
 				return tok;
 			}
 
@@ -321,6 +395,7 @@ TokenSet Lexer::NextToken()
 			{
 				tok.Token = T_OPERATOR;
 				tok.Value = L")";
+				tok.LineNo = LineNo;
 				return tok;
 			}
 
@@ -328,12 +403,14 @@ TokenSet Lexer::NextToken()
 			{
 				tok.Token = T_OPERATOR;
 				tok.Value = L"[";
+				tok.LineNo = LineNo;
 				return tok;
 			}
 			if (c == L']')
 			{
 				tok.Token = T_OPERATOR;
 				tok.Value = L"]";
+				tok.LineNo = LineNo;
 				return tok;
 			}
 
@@ -341,12 +418,14 @@ TokenSet Lexer::NextToken()
 			{
 				tok.Token = T_OPERATOR;
 				tok.Value =L"{";
+				tok.LineNo = LineNo;
 				return tok;
 			}
 			if (c == L'}')
 			{
 				tok.Token = T_OPERATOR;
 				tok.Value = L"}";
+				tok.LineNo = LineNo;
 				return tok;
 			}
 			if (c == L'&')
@@ -359,12 +438,14 @@ TokenSet Lexer::NextToken()
 					nextChar();
 					tok.Token = T_OPERATOR;
 					tok.Value = L"&&";
+					tok.LineNo = LineNo;
 					return tok;
 				}
 				else
 				{
 					tok.Token = T_OPERATOR;
 					tok.Value = L"&";
+					tok.LineNo = LineNo;
 					return tok;
 				}
 			}
@@ -382,12 +463,14 @@ TokenSet Lexer::NextToken()
 					nextChar();
 					tok.Token = T_OPERATOR;
 					tok.Value = L"||";
+					tok.LineNo = LineNo;
 					return tok;
 				}
 				else
 				{
 					tok.Token = T_OPERATOR;
 					tok.Value = L"|";
+					tok.LineNo = LineNo;
 					return tok;
 				}
 			}
@@ -396,6 +479,7 @@ TokenSet Lexer::NextToken()
 			{
 				tok.Token = T_OPERATOR;
 				tok.Value = L"~";
+				tok.LineNo = LineNo;
 				return tok;
 			}
 
@@ -403,6 +487,7 @@ TokenSet Lexer::NextToken()
 			{
 				tok.Token = T_OPERATOR;
 				tok.Value = L"?";
+				tok.LineNo = LineNo;
 				return tok;
 			}
 
@@ -410,6 +495,13 @@ TokenSet Lexer::NextToken()
 			{
 				tok.Token = T_OPERATOR;
 				tok.Value = L":";
+				return tok;
+			}
+			if (c == L';')
+			{
+				tok.Token = T_TOKEN;
+				tok.Value = L";";
+				tok.LineNo = LineNo;
 				return tok;
 			}
 		}
