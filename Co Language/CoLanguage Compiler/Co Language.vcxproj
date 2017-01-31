@@ -20,10 +20,62 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Parser\Lexer.cpp" />
+    <ClCompile Include="Source\Parser\Parser.cpp" />
     <ClCompile Include="Tester.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Parser\Lexer.h" />
+    <ClInclude Include="Source\Parser\Parser.h" />
+    <ClInclude Include="Source\Tree\AbstractAssignNode.h" />
+    <ClInclude Include="Source\Tree\ArrayIndexExpr.h" />
+    <ClInclude Include="Source\Tree\AssignNode.h" />
+    <ClInclude Include="Source\Tree\AssignOpNode.h" />
+    <ClInclude Include="Source\Tree\ASTNode.h" />
+    <ClInclude Include="Source\Tree\BinaryOpNode.h" />
+    <ClInclude Include="Source\Tree\BlockNode.h" />
+    <ClInclude Include="Source\Tree\BreakNode.h" />
+    <ClInclude Include="Source\Tree\CaseNode.h" />
+    <ClInclude Include="Source\Tree\CastNode.h" />
+    <ClInclude Include="Source\Tree\CharLiteralNode.h" />
+    <ClInclude Include="Source\Tree\ClassNode.h" />
+    <ClInclude Include="Source\Tree\ComponentNode.h" />
+    <ClInclude Include="Source\Tree\CondExprNode.h" />
+    <ClInclude Include="Source\Tree\ContinueNode.h" />
+    <ClInclude Include="Source\Tree\DefinitionNode.h" />
+    <ClInclude Include="Source\Tree\DoubleLiteralNode.h" />
+    <ClInclude Include="Source\Tree\DoWhile.h" />
+    <ClInclude Include="Source\Tree\ExpressionNode.h" />
+    <ClInclude Include="Source\Tree\ExprStmtNode.h" />
+    <ClInclude Include="Source\Tree\FloatLiteralNode.h" />
+    <ClInclude Include="Source\Tree\ForNode.h" />
+    <ClInclude Include="Source\Tree\FunctionCallExprNode.h" />
+    <ClInclude Include="Source\Tree\IfNode.h" />
+    <ClInclude Include="Source\Tree\ImportNode.h" />
+    <ClInclude Include="Source\Tree\InstanceNode.h" />
+    <ClInclude Include="Source\Tree\IntegerLiteralNode.h" />
+    <ClInclude Include="Source\Tree\InterfaceNode.h" />
+    <ClInclude Include="Source\Tree\JumpNode.h" />
+    <ClInclude Include="Source\Tree\LiteralNode.h" />
+    <ClInclude Include="Source\Tree\LogicalOpNode.h" />
+    <ClInclude Include="Source\Tree\LogicalOrNode.h" />
+    <ClInclude Include="Source\Tree\MemberNode.h" />
+    <ClInclude Include="Source\Tree\NewOpNode.h" />
+    <ClInclude Include="Source\Tree\Node.h" />
+    <ClInclude Include="Source\Tree\OldOpNode.h" />
+    <ClInclude Include="Source\Tree\PostFixOpNode.h" />
+    <ClInclude Include="Source\Tree\PrefixOpNode.h" />
+    <ClInclude Include="Source\Tree\Program.h" />
+    <ClInclude Include="Source\Tree\ProgramNode.h" />
+    <ClInclude Include="Source\Tree\ReturnNode.h" />
+    <ClInclude Include="Source\Tree\SemanticNode.h" />
+    <ClInclude Include="Source\Tree\StringLiteralNode.h" />
+    <ClInclude Include="Source\Tree\SwitchNode.h" />
+    <ClInclude Include="Source\Tree\UnAryNode.h" />
+    <ClInclude Include="Source\Tree\VariableNode.h" />
+    <ClInclude Include="Source\Tree\Visitor\Visitor.h" />
+    <ClInclude Include="Source\Tree\WhileNode.h" />
+    <ClInclude Include="Source\Type.h" />
+    <ClInclude Include="Source\Type\TypeTable.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

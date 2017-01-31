@@ -5,7 +5,7 @@
 
 
 using namespace std;
-
+using namespace col;
 TokenSet Lexer::NextToken()
 {
 	wchar_t c = 0;
@@ -503,6 +503,20 @@ TokenSet Lexer::NextToken()
 				tok.Value = L";";
 				tok.LineNo = LineNo;
 				return tok;
+			}
+
+			if (c == L'\'')
+			{
+				c = LookAhead(0);
+				
+				if (c == L'\'')
+				{
+					tok.LineNo = LineNo;
+					tok.Value = L"";
+					tok.Token = T_CHAR_CONST;
+					return tok;
+				}
+
 			}
 		}
 	}

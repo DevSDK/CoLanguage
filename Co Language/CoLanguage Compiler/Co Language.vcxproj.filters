@@ -12,6 +12,42 @@
     <Filter Include="Source Files\Parser">
       <UniqueIdentifier>{f7413806-a02a-431a-9128-cb47e93b5cf8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Tree">
+      <UniqueIdentifier>{0611baf5-34a9-411e-8f87-6df2c3141e58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tree\Expression">
+      <UniqueIdentifier>{c7a1b5f7-d6fb-4e35-bde8-0c266ea90b19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tree\Expression\Assign">
+      <UniqueIdentifier>{6900b4a0-f4c6-443e-8884-0f283324cad0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tree\Expression\BinaryOp">
+      <UniqueIdentifier>{39edb2da-57e0-4fa1-a214-58eeec0762d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tree\Expression\LHSNode">
+      <UniqueIdentifier>{2782f31b-0f2f-4a37-9cd9-94fcf248576d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tree\Expression\LiteralNode">
+      <UniqueIdentifier>{2a603d04-2a89-410b-90ec-8629ef1d7b36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tree\Expression\UnAry">
+      <UniqueIdentifier>{9931f326-0db0-4a76-baaf-58306ee2b17f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tree\Expression\ObjectNode">
+      <UniqueIdentifier>{cdf168b2-29f3-4e90-a8e2-12999ec79adc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tree\Semantic">
+      <UniqueIdentifier>{46ddc9f2-689a-4bf5-83e0-58b684664182}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tree\Definition">
+      <UniqueIdentifier>{f703ee18-d908-42bc-97c2-c9eb11ed8002}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tree\Visitor">
+      <UniqueIdentifier>{3a706b1d-8bad-47d4-b86f-0a9e06057265}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Type">
+      <UniqueIdentifier>{805d9e0e-c319-40ff-b233-6bd7f2ca6d00}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Parser\Lexer.cpp">
@@ -20,10 +56,166 @@
     <ClCompile Include="Tester.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Parser\Parser.cpp">
+      <Filter>Source Files\Parser</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Parser\Lexer.h">
       <Filter>Source Files\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Parser\Parser.h">
+      <Filter>Source Files\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\ImportNode.h">
+      <Filter>Source Files\Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\Node.h">
+      <Filter>Source Files\Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\ProgramNode.h">
+      <Filter>Source Files\Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\AbstractAssignNode.h">
+      <Filter>Source Files\Tree\Expression\Assign</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\AssignOpNode.h">
+      <Filter>Source Files\Tree\Expression\Assign</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\AssignNode.h">
+      <Filter>Source Files\Tree\Expression\Assign</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\ExpressionNode.h">
+      <Filter>Source Files\Tree\Expression</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\LogicalOrNode.h">
+      <Filter>Source Files\Tree\Expression\BinaryOp</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\BinaryOpNode.h">
+      <Filter>Source Files\Tree\Expression\BinaryOp</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\LogicalOpNode.h">
+      <Filter>Source Files\Tree\Expression\BinaryOp</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\CastNode.h">
+      <Filter>Source Files\Tree\Expression</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\CondExprNode.h">
+      <Filter>Source Files\Tree\Expression</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\FunctionCallExprNode.h">
+      <Filter>Source Files\Tree\Expression</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\ArrayIndexExpr.h">
+      <Filter>Source Files\Tree\Expression\LHSNode</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\MemberNode.h">
+      <Filter>Source Files\Tree\Expression\LHSNode</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\VariableNode.h">
+      <Filter>Source Files\Tree\Expression\LHSNode</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\IntegerLiteralNode.h">
+      <Filter>Source Files\Tree\Expression\LiteralNode</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\StringLiteralNode.h">
+      <Filter>Source Files\Tree\Expression\LiteralNode</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\LiteralNode.h">
+      <Filter>Source Files\Tree\Expression\LiteralNode</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\FloatLiteralNode.h">
+      <Filter>Source Files\Tree\Expression\LiteralNode</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\DoubleLiteralNode.h">
+      <Filter>Source Files\Tree\Expression\LiteralNode</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\CharLiteralNode.h">
+      <Filter>Source Files\Tree\Expression\LiteralNode</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\InstanceNode.h">
+      <Filter>Source Files\Tree\Expression</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\UnAryNode.h">
+      <Filter>Source Files\Tree\Expression\UnAry</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\PrefixOpNode.h">
+      <Filter>Source Files\Tree\Expression\UnAry</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\PostFixOpNode.h">
+      <Filter>Source Files\Tree\Expression\UnAry</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\NewOpNode.h">
+      <Filter>Source Files\Tree\Expression\ObjectNode</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\OldOpNode.h">
+      <Filter>Source Files\Tree\Expression\ObjectNode</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\IfNode.h">
+      <Filter>Source Files\Tree\Semantic</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\ForNode.h">
+      <Filter>Source Files\Tree\Semantic</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\WhileNode.h">
+      <Filter>Source Files\Tree\Semantic</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\DoWhile.h">
+      <Filter>Source Files\Tree\Semantic</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\ExprStmtNode.h">
+      <Filter>Source Files\Tree\Semantic</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\ReturnNode.h">
+      <Filter>Source Files\Tree\Semantic</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\SwitchNode.h">
+      <Filter>Source Files\Tree\Semantic</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\JumpNode.h">
+      <Filter>Source Files\Tree\Semantic</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\ContinueNode.h">
+      <Filter>Source Files\Tree\Semantic</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\BreakNode.h">
+      <Filter>Source Files\Tree\Semantic</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\CaseNode.h">
+      <Filter>Source Files\Tree\Semantic</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\BlockNode.h">
+      <Filter>Source Files\Tree\Semantic</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\ClassNode.h">
+      <Filter>Source Files\Tree\Definition</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\ComponentNode.h">
+      <Filter>Source Files\Tree\Definition</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\InterfaceNode.h">
+      <Filter>Source Files\Tree\Definition</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\DefinitionNode.h">
+      <Filter>Source Files\Tree\Definition</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\SemanticNode.h">
+      <Filter>Source Files\Tree\Semantic</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\ASTNode.h">
+      <Filter>Source Files\Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\Program.h">
+      <Filter>Source Files\Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tree\Visitor\Visitor.h">
+      <Filter>Source Files\Tree\Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Type\TypeTable.h">
+      <Filter>Source Files\Type</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Type.h">
+      <Filter>Source Files\Type</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
